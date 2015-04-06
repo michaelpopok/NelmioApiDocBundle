@@ -306,13 +306,6 @@ class ApiDocExtractor
             $parameters = $this->clearClasses($parameters);
             $parameters = $this->generateHumanReadableTypes($parameters);
 
-            if ('PUT' === $annotation->getMethod()) {
-                // All parameters are optional with PUT (update)
-                array_walk($parameters, function ($val, $key) use (&$parameters) {
-                    $parameters[$key]['required'] = false;
-                });
-            }
-
             $annotation->setParameters($parameters);
         }
 
